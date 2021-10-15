@@ -1,27 +1,18 @@
 
-import Config from './Config.json'
+
 import { ethers } from 'ethers'
 
 export default class Web3{
 
     initWeb3(){
-        //get provider and signer using either rpc network or injected depending on config
-        let provider = null;
-        if (Config.isWeb3){
-            if(window.ethereum){
-                //metamask
-                provider = new ethers.providers.Web3Provider(window.ethereum)
-                provider.on("network", (_, oldNetwork) => {
-                    if (oldNetwork) {
-                        //reload on network change
-                        window.location.reload();
-                    }
-                });
-          }
-        }else{
-            //localhost
-            provider = new ethers.providers.JsonRpcProvider(Config.provider);
-        }
+        //get provider and signer
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        provider.on("network", (_, oldNetwork) => {
+            if (oldNetwork) {
+                //reload on network change
+                window.location.reload();
+            }
+        });
         const signer = provider ? provider.getSigner() : null;
         return {provider, signer}
     }

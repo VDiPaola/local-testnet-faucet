@@ -3,8 +3,8 @@ import Stack from 'react-bootstrap/Stack';
 import Spinner from 'react-bootstrap/Spinner'
 import React from 'react'
 import Web3 from './web3'
-import Config from './Config.json'
 import {ethers} from 'ethers'
+import { Row } from 'react-bootstrap';
 
 export default class App extends React.Component{
   constructor(props){
@@ -17,7 +17,8 @@ export default class App extends React.Component{
       signer,
       account: null,
       wallet: null,
-      spinner:false
+      spinner:false,
+      privateKey:null
     }
   }
 
@@ -27,13 +28,9 @@ export default class App extends React.Component{
       this.setState({account})
     })
     .catch(err=>{
+      console.log(err)
       this.metamaskLogin()
     })
-    this.state.web3.getWallet(Config.private_key, this.state.provider)
-    .then(wallet=>{
-      this.setState({wallet})
-    })
-    .catch(err=>console.log(err))
   }
 
   metamaskLogin(){
@@ -56,6 +53,24 @@ export default class App extends React.Component{
     }
   }
 
+  onPrivateKeyChange(e){
+    this.setState({privateKey:e.target.value})
+  }
+
+  onSetPrivateKeyClick(){
+    if(this.state.privateKey && this.state.provider){
+      this.state.web3.getWallet(this.state.privateKey, this.state.provider)
+      .then(wallet=>{
+        this.setState({wallet})
+      })
+      .catch(err=>{
+        console.log(err)
+        alert("failed to set wallet with that private key, check console for error")
+      })
+    }
+    
+  }
+
   render(){
     return(
       <div className="container text-center">
@@ -63,6 +78,10 @@ export default class App extends React.Component{
           (!this.state.account && <Button variant="primary" className="mx-auto col-6" onClick={this.metamaskLogin.bind(this)}>Login</Button>) || (
           <Stack gap={2}>
           <h3>{this.state.account}</h3>
+          <Row>
+          <input type="text" placeholder="Faucet Private Key" className="form-control mx-auto w-50" onChange={this.onPrivateKeyChange.bind(this)}/>
+          <Button variant="primary" className="mx-auto col-6" onClick={this.onSetPrivateKeyClick.bind(this)}>Set Private Key</Button>
+          </Row>
           {this.state.wallet && 
           ((this.state.spinner && <Spinner animation="border" className="mx-auto" role="status" />) ||
           <Button variant="primary" className="mx-auto col-6" onClick={this.getEth.bind(this)}>Get Eth</Button>)
