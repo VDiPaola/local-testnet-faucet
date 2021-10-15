@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/local-testnet-faucet/static/css/main.22bac562.chunk.css",
+    "main.js": "/local-testnet-faucet/static/js/main.7546ddcc.chunk.js",
+    "main.js.map": "/local-testnet-faucet/static/js/main.7546ddcc.chunk.js.map",
+    "runtime-main.js": "/local-testnet-faucet/static/js/runtime-main.d22a0188.js",
+    "runtime-main.js.map": "/local-testnet-faucet/static/js/runtime-main.d22a0188.js.map",
+    "static/css/2.38b25607.chunk.css": "/local-testnet-faucet/static/css/2.38b25607.chunk.css",
+    "static/js/2.dfad9816.chunk.js": "/local-testnet-faucet/static/js/2.dfad9816.chunk.js",
+    "static/js/2.dfad9816.chunk.js.map": "/local-testnet-faucet/static/js/2.dfad9816.chunk.js.map",
+    "index.html": "/local-testnet-faucet/index.html",
+    "static/css/2.38b25607.chunk.css.map": "/local-testnet-faucet/static/css/2.38b25607.chunk.css.map",
+    "static/css/main.22bac562.chunk.css.map": "/local-testnet-faucet/static/css/main.22bac562.chunk.css.map",
+    "static/js/2.dfad9816.chunk.js.LICENSE.txt": "/local-testnet-faucet/static/js/2.dfad9816.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d22a0188.js",
+    "static/css/2.38b25607.chunk.css",
+    "static/js/2.dfad9816.chunk.js",
+    "static/css/main.22bac562.chunk.css",
+    "static/js/main.7546ddcc.chunk.js"
+  ]
+}
